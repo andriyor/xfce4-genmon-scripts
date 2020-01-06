@@ -3,13 +3,15 @@
 # https://github.com/Sapd/HeadsetControl
 
 regex="([0-9]*)%$"
+regexx="(101)"
 BATTERY_LEVEL="$(HeadsetControl -b)"
 
-if [[ $BATTERY_LEVEL =~ $regex ]]
-then
+if [[ $BATTERY_LEVEL =~ $regex ]]; then
     STATUS="${BASH_REMATCH}"
-else
-    STATUS="Disconnected"
+elif [[ $BATTERY_LEVEL =~ $regexx ]]; then
+     STATUS="???%"
+else	
+ 	STATUS="Disconnected"
 fi
 
 # Panel
